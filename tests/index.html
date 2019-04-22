@@ -25,7 +25,8 @@
     var NumberControllerSlider = dat.controllers.NumberControllerSlider;
     var FunctionController = dat.controllers.FunctionController;
     var ColorController = dat.controllers.ColorController;
-    var GUI = dat.gui.GUI;
+    var CustomController = dat.controllers.CustomController;
+    var GUI = dat.gui.GUI; 
 
 
     module("Color Math");
@@ -863,7 +864,21 @@ console.log(c2.__checkbox.getAttribute('checked'));
       document.body.removeChild(c1.domElement);
     });
 */
-    module("Controller Events");
+
+    module( "CustomController" );
+
+    test( "Get Custom", function () {
+    	var object = initObject();
+    	var c1 = new CustomController( object, 'colorProperty' );
+    	document.body.appendChild( c1.domElement );
+
+    	var input = c1.domElement.getElementsByTagName( "input" )[0];
+    	equal( input.value, object.colorProperty, "Input value is the same as the colorProperty" );
+
+    	document.body.removeChild( c1.domElement );
+    } );
+
+    module( "Controller Events" );
 
     test("onChange", function() {
 
